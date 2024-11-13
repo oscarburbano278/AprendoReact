@@ -1,6 +1,13 @@
-.contenedorEncabezado{
+*{
     text-align: center;
-    font-family: sans-serif;
-    font-size: 20px;
-    color: rgb(82, 82, 83);
+}
+.clsHeaderTitle{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;    
+    
+}
+
+.clsHeaderTitle h2{
+    font-size: 17px;
+    color: rgb(70, 122, 122);
 }

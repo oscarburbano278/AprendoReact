@@ -1,30 +1,37 @@
-import React from 'react';
 //import Boton from './Componente/Boton'
-import Header from './Componente/Header';
-import Aside from './Componente/Aside';
-import html5 from './assets/html5.png';
-import css3 from './assets/css3.png';
-import js from './assets/js.png';
-import logoR from './assets/logoReact.png';
+
+import Encabezado from './Componente/HeaderTitle';
+import Article from './Componente/Article';
 import './App.css'
+import Boton from './Componente/Boton';
 
 function App() {
 
   return (
-    <div className="contenedor">
+    <div className="App">
 
-      <div className="contenedorEncabezado">
+      <div className="containerHeader">      
+        <Encabezado
+        titulo = 'SUSCRIBETE'
+        parrafo = 'inscribete con tu dirección de email'
+        />
+      </div>
+      
 
-        <Header titulo = 'Soy desarrollador Front end'/>
+      <div className="contenedorCuerpo">
+          <Article placehold='firsName'/>
+          <Article placehold='lastName'/>
+          <Article placehold='Email'/>
+      </div>
+
+      <div className="containerBoton">
+        <Boton>
+          Subscribirse
+        </Boton>
         
       </div>
-      <div className="contenedorAside">
-        <Aside imagen={html5} />
-        <Aside imagen={css3} />
-        <Aside imagen={js} />
-        <Aside imagen={logoR} />
-        
-      </div>
+
+     
 
     </div> 
   );

@@ -1,10 +1,11 @@
 import '../Estilos/Header.css';
+import HeaderTitle from './HeaderTitle';
 
-const Header = ({titulo}) =>{
+const Header = () =>{
     
     return(
-        <div className='contenedorEncabezado'>
-            <h1>{titulo}</h1>             
+        <div className="headerContainer">
+             <HeaderTitle />        
         </div>
     )
 }
