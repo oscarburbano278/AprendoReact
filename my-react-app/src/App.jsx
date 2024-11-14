@@ -1,7 +1,7 @@
 //import Boton from './Componente/Boton'
 
-import Encabezado from './Componente/HeaderTitle';
-import Article from './Componente/Article';
+import Header from './Componente/Header';
+import Aside from './Componente/Aside';
 import './App.css'
 import Boton from './Componente/Boton';
 
@@ -11,17 +11,18 @@ function App() {
     <div className="App">
 
       <div className="containerHeader">      
-        <Encabezado
-        titulo = 'SUSCRIBETE'
-        parrafo = 'inscribete con tu dirección de email'
+        <Header 
+        title = 'SUSCRIBETE'
+        description='incribete con tu direccion de email'
         />
+        
       </div>
       
 
       <div className="contenedorCuerpo">
-          <Article placehold='firsName'/>
-          <Article placehold='lastName'/>
-          <Article placehold='Email'/>
+          <Aside type='text' placehold='firsName'/>
+          <Aside type='text' placehold='lastName'/>
+          <Aside type='email' placehold='Email'/>
       </div>
 
       <div className="containerBoton">

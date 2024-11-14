@@ -1,12 +1,12 @@
 import '../Estilos/Header.css';
-import HeaderTitle from './HeaderTitle';
 
-const Header = () =>{
+const Header = ({ title, description }) =>{
     
     return(
-        <div className="headerContainer">
-             <HeaderTitle />        
-        </div>
+        <header> 
+             <h1>{title}</h1>
+             <p>{description}</p>              
+        </header>
     )
 }
 

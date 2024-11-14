@@ -1,0 +1,13 @@
+
+
+input{
+    background-color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: black;
+    font-size: 1rem;
+    flex: 1 1 200px;
+    width: 80%;
+    min-width: 150px;
+}
