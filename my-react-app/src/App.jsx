@@ -1,36 +1,34 @@
-import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import "./App.css";
 
-function SeasonalApp() {
-  // Estado para manejar la estación actual
-  const [season, setSeason] = useState("primavera");
+const App = () =>{
+  
+  const[firstName, setFirstName] = useState("");
+  
 
-  // Efecto para cambiar el fondo del cuerpo según la estación
-  useEffect(() => {
-    const body = document.body;
-
-    // Aplicar clases de fondo según la estación
-    body.className = ""; // Resetear clases anteriores
-    body.classList.add(season);
-  }, [season]); // Se ejecuta cada vez que `season` cambia
-
-  // Función para cambiar la estación
-  const changeSeason = (newSeason) => {
-    setSeason(newSeason);
+  const handleChange = (e) => {
+    setFirstName(e.target.value)
+    
   };
 
-  return (
-    <div className="seasonal-app">
-      <h1>Estaciones del Año</h1>
-      <p>Estación actual: <strong>{season}</strong></p>
-      <div className="buttons">
-        <button onClick={() => changeSeason("primavera")}>Primavera</button>
-        <button onClick={() => changeSeason("verano")}>Verano</button>
-        <button onClick={() => changeSeason("otoño")}>Otoño</button>
-        <button onClick={() => changeSeason("invierno")}>Invierno</button>
+    
+    return (
+      <div className='App'>
+        <h3>digita un enunciado en el campo de texto, para que por medio del 
+          evento onChange y el uso de hooks 'useState' se muestre automaticamente 
+        </h3>
+        <label htmlFor='firstName'>First Name: </label>
+        <input
+          type='text'
+          id='firstName'
+          name='firstName'
+          placeholder='First Name'
+          value={firstName}
+          onChange={handleChange}
+        />
+        <h1>{firstName}</h1>
       </div>
-    </div>
-  );
+    );  
 }
 
-export default SeasonalApp;
+export default App;
