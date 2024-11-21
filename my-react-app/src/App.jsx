@@ -1,26 +1,14 @@
-
 import './App.css';
+import Counter from './components/Counter';
 
-// Componente Padre
-function ParentComponent() {
-  const handleCustomEvent = (data) => {
-    console.log('Evento personalizado disparado:', data);
-  };
+const App =() =>{
 
-  return (
-    <ChildComponent onCustomEvent={handleCustomEvent} />
-  );
+  return(
+    <div>
+      <Counter />
+    </div>
+  )  
+
 }
 
-// Componente Hijo
-function ChildComponent({ onCustomEvent }) {
-  const handleClick = () => {
-    onCustomEvent('Hola desde el componente hijo');
-  };
-
-  return (
-    <button onClick={handleClick}>Disparar evento</button>
-  );
-}
-
-export default ParentComponent;
+export default App;
