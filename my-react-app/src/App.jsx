@@ -1,73 +1,105 @@
 import React, { useState } from "react";
+import './App.css';
 
-const App = () => {
-  // Estado para almacenar todos los campos
+const FormValidation = () => {
+  // Estado para los valores del formulario
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    country: "",
-    title: "",
+    name: "",
+    email: "",
+    password: "",
   });
 
-  // Función para manejar cambios en los inputs
+  // Estado para los errores del formulario
+  const [errors, setErrors] = useState({});
+
+  // Manejar el cambio en los campos
   const handleChange = (e) => {
-    const { name, value } = e.target; // Obtén el nombre y el valor del input
-    setFormData({ ...formData, [name]: value }); // Actualiza solo el campo correspondiente
+    const { name, value } = e.target;
+
+    // Actualizar el estado del formulario
+    setFormData({ ...formData, [name]: value });
+
+    // Limpiar errores mientras escribe
+    setErrors({ ...errors, [name]: "" });
   };
 
-  // Función para manejar el envío del formulario
+  // Validar los campos del formulario
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.name) {
+      newErrors.name = "El nombre es obligatorio.";
+    }
+
+    if (!formData.email) {
+      newErrors.email = "El correo es obligatorio.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "El correo no es válido.";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "La contraseña es obligatoria.";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "La contraseña debe tener al menos 6 caracteres.";
+    }
+
+    return newErrors;
+  };
+
+  // Manejar el envío del formulario
   const handleSubmit = (e) => {
-    e.preventDefault(); // Previene el comportamiento predeterminado de recargar la página
-    console.log("Formulario enviado:", formData); // Aquí puedes procesar los datos
-    alert(`Student added: ${formData.firstName} ${formData.lastName}, ${formData.country}, ${formData.title}`);
+    e.preventDefault();
+
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      // Actualizar los errores si hay problemas
+      setErrors(validationErrors);
+    } else {
+      // Aquí se puede enviar el formulario
+      console.log("Formulario enviado con éxito:", formData);
+      alert("Formulario enviado con éxito");
+    }
   };
 
   return (
     <div className="App">
-      <h3>Add Student</h3>
+      <h2>Formulario de Registro</h2>
       <form onSubmit={handleSubmit}>
         <div>
+          <label>Nombre:</label>
           <input
             type="text"
-            name="firstName"
-            placeholder="First Name"
-            value={formData.firstName}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && <p>{errors.name}</p>}
         </div>
         <div>
+          <label>Correo Electrónico:</label>
           <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            value={formData.lastName}
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
           />
+          {errors.email && <p>{errors.email}</p>}
         </div>
         <div>
+          <label>Contraseña:</label>
           <input
-            type="text"
-            name="country"
-            placeholder="Country"
-            value={formData.country}
+            type="password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
           />
+          {errors.password && <p>{errors.password}</p>}
         </div>
-        <div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <button className="btn btn-success" type="submit">
-          Submit
-        </button>
+        <button type="submit">Registrar</button>
       </form>
     </div>
   );
 };
 
-export default App;
+export default FormValidation;
