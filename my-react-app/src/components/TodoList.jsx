@@ -1,8 +1,10 @@
 import React, {useState} from "react";
+import '../styles/TodoList.css';
 
 const TodoList = () =>{
-    const[todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState([]);
     const [newTodo, setNewTodo] = useState('');
+    const [editingTodoId, setEditingTodoId] = useState(null);
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -34,6 +36,18 @@ const TodoList = () =>{
         );
     };
 
+    const handleEditToggle = (id) => {
+        setEditingTodoId(id === editingTodoId ? null : id);
+    };
+
+    const handleEditChange = (event, id) => {
+        setTodos(
+          todos.map(todo =>
+            todo.id === id ? { ...todo, text: event.target.value } : todo
+          )
+        );
+      };
+
     return(
         <div className="container">
 
@@ -43,18 +57,30 @@ const TodoList = () =>{
             </form>
 
             <ul>
-                {todos.map(todo =>(
-                    <li key={todo.id}>
-                    <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    onChange={() => handleToggleComplete(todo.id)}
-                    />
-                    {todo.text}
-                    <button onClick={() => handleDelete(todo.id)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            {editingTodoId === todo.id ? (
+              <input
+                type="text"
+                value={todo.text}
+                onChange={(e) => handleEditChange(e, todo.id)}
+                onBlur={handleEditToggle}
+              />
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleToggleComplete(todo.id)}
+                />
+                {todo.text}
+                <button onClick={() => handleDelete(todo.id)}>Eliminar</button>
+                <button onClick={() => handleEditToggle(todo.id)}>Editar</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
         </div>
     );
 }
