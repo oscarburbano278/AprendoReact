@@ -1,5 +1,18 @@
+import { useState} from "react";
 
 const Usuario = ({userName, Name, imgUsuario}) => {
+  const [isFollowing, setIsFollowing] = useState(false)
+
+  const text = isFollowing ? 'Siguiendo' : 'Seguir'
+
+  const buttonClassName = isFollowing 
+  ? 'followCard-boton is-following'
+  : 'followCard-boton'
+
+  const handleClick = () => {
+    setIsFollowing(!isFollowing);
+  }
+
   return (
     <article className="followCard-article">
       <header className="card-header">
@@ -15,8 +28,8 @@ const Usuario = ({userName, Name, imgUsuario}) => {
       </header>
 
       <aside>
-        <button className='followCard-boton'>
-          seguir
+        <button className={buttonClassName} onClick={handleClick}>
+          {text}
         </button>
       </aside>
     </article>

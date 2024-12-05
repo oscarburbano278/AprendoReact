@@ -4,13 +4,11 @@ import imgUsuario1 from './assets/oscar.jpeg';
 import imgUsuario2 from './assets/images.png';
 
 
-const App =() =>{
-
-  
+const App =() =>{ 
 
   return(
     <div className='App'>
-      <Usuario
+      <Usuario      
       Name='Oscar Burbano'
       userName= 'Nacano'
       imgUsuario ={imgUsuario1}
